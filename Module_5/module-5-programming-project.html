@@ -1,81 +1,132 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>CMPS 162: Module 5 Programming Project</title>
-<style>* { font-family: monospace; }</style>
-<script>
+  <meta charset="UTF-8">
+  <title>CMPS 162: Module 5 Programming Project</title>
+  <style>
+    * { font-family: monospace; }
 
-//--------//
-// Events //
-//--------//
-console.log("Events");
+    /* 1. Change the background color of input field when focused */
+    input {
+      font-size: 16px;
+      padding: 5px;
+      border: 1px solid black;
+    }
 
-// 1. Change the link (the <a> tag) in the HTML body below such that a hello
-//    message is displayed on a click event.
+    /* 2. Original input background color */
+    input:focus {
+      background-color: red;
+      color: blue; /* 3. Change text color to blue */
+    }
 
+    input:not(:focus) {
+      background-color: white;
+    }
 
+    /* 1. Increase text size */
+    .large-text {
+      font-size: 8em;
+    }
 
-//--------------//
-// Input Fields //
-//--------------//
-console.log("Input Fields");
-<input type="text" id="myTextField" value="Type here" oninput="changeBackgroundColor()">
+    /* 2. Decrease text size */
+    .medium-text {
+      font-size: 5em;
+    }
+  </style>
+  <script>
+    //--------//
+    // Events //
+    //--------//
+    console.log("Events");
 
-// 1. Change the background color to red for the input text field (the <input>
-//    tag) in the HTML body when obtaining the focus and change it back to
-//    white when the focus is lost.
-  
+    // 1. Click event for the link to display a hello message
+    function showGreeting() {
+      alert("Hello! Welcome to CMPS 162!");
+    }
 
-// 2. Change the background color to the original input background color
+    //--------------//
+    // Input Fields //
+    //--------------//
+    console.log("Input Fields");
 
-  
-// 3. Change the text from the default font color to blue
+    // 1. Change the background color when input is focused
+    function changeBackgroundColor(inputField) {
+      inputField.style.backgroundColor = "red";
+      inputField.style.color = "blue"; // 3. Change text to blue
+    }
 
+    // 2. Revert background color when input loses focus
+    function resetBackgroundColor(inputField) {
+      inputField.style.backgroundColor = "white";
+      inputField.style.color = "black"; // Reset text color
+    }
 
+    //--------//
+    // Images //
+    //--------//
+    console.log("Images");
 
-//--------//
-// Images //
-//--------//
-console.log("Images");
+    // 1. Hide image on click
+    function hideImage(imgElement) {
+      imgElement.style.display = "none";
+    }
 
-// 1. Add an image to the HTML body (use the <img> tag). Make it disappear when
-//    someone clicks on it.
+    // 2. Mouseover event to swap images
+    function swapImage(imgElement) {
+      imgElement.src = "https://via.placeholder.com/150/0000FF/FFFFFF?text=New+Image";
+    }
 
-// 2. Mouse over an object having an existing image and by mousing over another image appears in its place
-//
+    function revertImage(imgElement) {
+      imgElement.src = "https://via.placeholder.com/150/FF0000/FFFFFF?text=Original+Image";
+    }
 
+    //--------//
+    // Styles //
+    //--------//
+    console.log("Styles");
 
-//--------//
-// Styles //
-//--------//
-console.log("Styles");
-
-// 1. Use the style to increase the text "The Pirates will advance to the World Series in 2025" 
-// Use a paragraph style code and increase the text to 8 em
-
-// 2. Use the style to decrease the text "The Pirates will advance to the World Series in 2025" 
-// Use a paragraph style code and increase the text to 5 em
-  
-
-
-
-</script>
+  </script>
 </head>
 <body>
-  See console!<br><br>
-  <a>Click here for a greeting!</a><br><br>
-  <input type="text"><br><br>
-  <p>Hello World!</p>
-  <div id="div1"
-       style="background-color:yellow;"
-       onclick="swapColors();">
+  <h3>See console!</h3>
+
+  <!-- 1. Clickable Link for Greeting -->
+  <a href="#" onclick="showGreeting();">Click here for a greeting!</a>
+  <br><br>
+
+  <!-- 1. Input Field with Background Color Change -->
+  <input type="text" id="myTextField" value="Type here" 
+    onfocus="changeBackgroundColor(this)" 
+    onblur="resetBackgroundColor(this)">
+  <br><br>
+
+  <!-- 1. Image that disappears on click -->
+  <img src="https://via.placeholder.com/150" 
+       alt="Clickable Image"
+       onclick="hideImage(this)">
+  <br><br>
+
+  <!-- 2. Mouseover Event to Swap Image -->
+  <img src="https://via.placeholder.com/150/FF0000/FFFFFF?text=Original+Image" 
+       onmouseover="swapImage(this)"
+       onmouseout="revertImage(this)">
+  <br><br>
+
+  <!-- 1. Increased Text Size -->
+  <p class="large-text">The Pirates will advance to the World Series in 2025</p>
+
+  <!-- 2. Decreased Text Size -->
+  <p class="medium-text">The Pirates will advance to the World Series in 2025</p>
+
+  <br><br>
+
+  <!-- Clickable Divs to Swap Colors -->
+  <div id="div1" style="background-color:yellow; padding:10px; display:inline-block; cursor:pointer;" onclick="swapColors();">
     Hello
   </div>
-  <div id="div2"
-       style="background-color:green;"
-       onclick="swapColors();">
+  <div id="div2" style="background-color:green; padding:10px; display:inline-block; cursor:pointer;" onclick="swapColors();">
     World
   </div>
+
 </body>
 </html>
